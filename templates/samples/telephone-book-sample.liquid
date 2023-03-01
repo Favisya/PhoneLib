@@ -1,0 +1,30 @@
+
+<tr class="telephone-book-item">
+    <td class="telephone-book-item__item">
+        <span>{{ telephoneBookItem.id }}</span>
+    </td>
+
+    <td class="telephone-book-item__item">
+        <span>{{ telephoneBookItem.phoneNumber }}</span>
+    </td>
+
+    <td class="telephone-book-item__item">
+        <span>{{ telephoneBookItem.name }}</span>
+    </td>
+
+    <td>
+        <a class="button-link"
+           href="/telephone-book-edit?id={{ telephoneBookItem.id }}"
+        >
+            Edit
+        </a>
+    </td>
+
+    <td>
+        <a class="button-link_delete"
+           href="/telephone-book-delete?id={{ telephoneBookItem.id }}"
+        >
+            Delete
+        </a>
+    </td>
+</tr>

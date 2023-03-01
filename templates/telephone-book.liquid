@@ -1,0 +1,21 @@
+{% layout "layout/default-layout.liquid", title: 'Phone numbers' %}
+{% assign telephoneBookItems = data %}
+
+<div class="wrapper">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Phone Number</th>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for telephoneBookItem in telephoneBookItems %}
+            {% include 'samples/telephone-book-sample.liquid', telephoneBookItem: telephoneBookItem %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

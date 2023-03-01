@@ -1,0 +1,42 @@
+{% layout "layout/default-layout.liquid", title: 'Add phone' %}
+{% assign telephoneBookItem = data.first %}
+
+<form id="form"
+      class="form"
+      action="/telephone-book-edit"
+      method="post">
+
+    <div class="form__item">
+        <label class="form__label"
+               for="number"
+        >
+        </label>
+        <input class="form__input"
+               type="tel"
+               id="number"
+               name="number"
+               value="{{ telephoneBookItem.phoneNumber }}"
+               required
+        >
+    </div>
+
+    <div class="form__item">
+        <label class="form__label"
+               for="name"
+        >
+        </label>
+        <input class="form__input"
+               type="text"
+               id="name"
+               name="name"
+               value="{{ telephoneBookItem.name }}"
+               required
+        >
+    </div>
+
+    <button class="button button_primary"
+            type="submit"
+    >
+        Submit
+    </button>
+</form>
