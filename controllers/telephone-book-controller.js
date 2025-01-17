@@ -6,7 +6,6 @@ export default class TelephoneBookController extends Controller {
     async getHandler(req, res) {
         const telephoneBookResource = new TelephoneBookResource();
         const telephoneBook = await telephoneBookResource.getTelephoneBook();
-
         const view = new View();
 
         view.setTemplate('telephone-book')

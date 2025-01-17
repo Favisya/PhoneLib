@@ -1,29 +1,30 @@
-import mysql from 'mysql-await';
+import pg from 'pg'
 
 export default class Database {
     static connection = null;
 
-    static getConnection() {
+    static async getConnection() {
         if (this.connection) {
             return this.connection;
         }
 
-        this.connection = mysql.createConnection({
-            host: '127.0.0.1',
-            user: 'dima',
-            password: 'fuckme420#',
-            database: 'telephone_book',
-            port: 3307
-        })
+        const { Client } = pg
+        this.connection = new Client({
+            user:     'root',
+            port:     '5432',
+            host:     'localhost',
+            password: 'password',
+            database: 'phone_lib'
+        });
 
         this.connection.connect();
 
         return this.connection;
     }
 
-    static makeQuery(query, params) {
-        const connection = this.getConnection();
+    static async makeQuery(query, params) {
+        const connection = await this.getConnection();
 
-        return connection.awaitQuery(query, params);
+        return connection.query(query, params);
     }
 }

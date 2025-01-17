@@ -1,30 +1,44 @@
 import Database from '../Database.js';
 
 export default class TelephoneBookResource {
+    async getTelephoneBookByType(type) {
+        const res = await Database.makeQuery(
+            'SELECT id, phone_number as phonenumber, type, name FROM phone_numbers WHERE type = $1',
+            [type]
+        );
+
+        return res.rows;
+    }
+
     async getTelephoneBook() {
-        return await Database.makeQuery('SELECT id, phone_number as phoneNumber, name FROM phone_numbers');
+        const res = await Database.makeQuery('SELECT id, phone_number as phonenumber, type , name FROM phone_numbers');
+
+        return res.rows;
     }
 
     async addPhone(params) {
-        Database.makeQuery(`INSERT INTO phone_numbers (name, phone_number) VALUES (?, ?)`,
-            [params.name, params.number])
+        await Database.makeQuery(`INSERT INTO phone_numbers (name, phone_number, type) VALUES ($1, $2, $3)`,
+            [params.name, params.number, params.type])
     }
 
     async deletePhone(id) {
-        Database.makeQuery(`DELETE FROM telephone_book.phone_numbers WHERE id = ?`, id)
+        await Database.makeQuery(`DELETE FROM phone_numbers WHERE id = $1`, [id])
     }
 
     async getPhoneById(id) {
-        return await Database.makeQuery(
-            `SELECT phone_number as phoneNumber, name FROM phone_numbers WHERE id = ?`,
-            id
+        const res = await Database.makeQuery(
+            `SELECT phone_number as phonenumber, name FROM phone_numbers WHERE id = $1`,
+            [id]
         )
+
+        console.log(res.rows)
+        return res.rows;
     }
 
     async updatePhone(params, id) {
-        Database.makeQuery(
-            `UPDATE telephone_book.phone_numbers set name = ?, phone_number = ? WHERE id = ?`,
-            [params.name, params.number, id]
+        await Database.makeQuery(
+            `UPDATE phone_numbers set name = $1, phone_number = $2, type = $3 WHERE id = $4`,
+            [params.name, params.number, params.type, id]
         )
     }
 }

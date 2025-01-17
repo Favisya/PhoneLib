@@ -2,12 +2,24 @@
 {% assign telephoneBookItems = data %}
 
 <div class="wrapper">
+    <form action="/telephone-by-type" id="type-form" method="get">
+        <select id="select" name="type" form="type-form">
+            <option value="personal">Personal</option>
+            <option value="work">Work</option>
+        </select>
+
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Phone Number</th>
             <th>Name</th>
+            <th>Type</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>

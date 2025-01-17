@@ -15,7 +15,7 @@
                type="tel"
                id="number"
                name="number"
-               value="{{ telephoneBookItem.phoneNumber }}"
+               value="{{ telephoneBookItem.phonenumber }}"
                required
         >
     </div>
@@ -30,6 +30,20 @@
                id="name"
                name="name"
                value="{{ telephoneBookItem.name }}"
+               required
+        >
+    </div>
+
+    <div class="form__item">
+        <label class="form__label"
+               for="name"
+        >
+        </label>
+        <input class="form__input"
+               type="text"
+               id="type"
+               name="type"
+               value="{{ telephoneBookItem.type }}"
                required
         >
     </div>
